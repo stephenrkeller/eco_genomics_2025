@@ -1,2 +1,4 @@
-# eco_genomics_2025
+# Ecological Genomics 2025
 student-facing page for Ecological Genomics 2025
+
+
