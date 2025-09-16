@@ -32,4 +32,20 @@ This will keep my notes on population genomics coding sessions
 
 ### 09/16/25: Mapping our cleaned reads to the reference genome
 
+-   We mapped our clean reads to the black spruce reference genome using bwa-mem2.
 
+    -   The script we wrote for this job is `mapping.sh` and is located in the `population_genomics/myscripts/` directory in my class repo.
+
+    -   The ref genome is here:
+
+        -   `/gpfs1/cl/ecogen/pbio6800/ref_genomes/Pmariana/`
+
+-   After mapping, we processed the sequence alignment (.sam) files by converting to binary format (.bam), sorting, removing PCR duplicates, and indexing with the program `sambamba.`
+
+    -   The script we wrote for this job is `process_bam.sh` and is located in the `population_genomics/myscripts/` directory in my class repo.
+
+-   Lastly, we wrote a script to summarize the ampping success and depth of coverage `bam_stats.sh` saved to `myscripts/`
+
+-   Because the mapping step was taking awhile on the cluster, we wrote a simple wrapper script `process_stats_wrapper.sh` and included the SBATCH header to submit the processing and stats scripts as a batch.
+
+    -   the outputs are saved in `population_genomics/myresults/`
