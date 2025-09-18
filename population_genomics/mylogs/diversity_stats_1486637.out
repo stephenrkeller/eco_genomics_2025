@@ -1,0 +1,13 @@
+mkdir: cannot create directory ‘/users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/mydata/ANGSD’: File exists
+	-> angsd version: 0.935 (htslib: 1.19.1) build(Dec 18 2024 17:12:57)
+	-> angsd -b /users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/mydata/ANGSD/2030_bam.list -ref /gpfs1/cl/ecogen/pbio6800/PopulationGenomics/ref_genome/Pmariana1.0-genome_reduced.fa -anc /gpfs1/cl/ecogen/pbio6800/PopulationGenomics/ref_genome/Pmariana1.0-genome_reduced.fa -out /users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/mydata/ANGSD/2030_ALL -nThreads 10 -remove_bads 1 -C 50 -baq 1 -minMapQ 20 -minQ 20 -GL 2 -doSaf 1 -doCounts 1 -minInd 4 -setMinDepthInd 1 -setMaxDepthInd 40 -setMinDepth 10 -skipTriallelic 1 -doMajorMinor 4 
+	-> Inputtype is BAM/CRAM
+[multiReader] 8 samples in 8 input files
+	-> Reading fasta: /gpfs1/cl/ecogen/pbio6800/PopulationGenomics/ref_genome/Pmariana1.0-genome_reduced.fa
+	-> fastafile: '/gpfs1/cl/ecogen/pbio6800/PopulationGenomics/ref_genome/Pmariana1.0-genome_reduced.fa' doesn't exists, will exit
+	-> Problem opening file: '/users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/mydata/ANGSD/2030_ALL.saf.idx'
+	-> Problem opening file: '/users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/mydata/ANGSD/2030_ALL.saf.idx'
+ thetaStat do_stat /users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/mydata/ANGSD/2030_ALL.thetas.idx -win 50000 -step 50000 -outnames /users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/myresults/ANGSD/diversity/2030_ALL_win50000_step50000.thetasWindow.gz
+	Assuming binfile:/users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/mydata/ANGSD/2030_ALL.thetas.gz and indexfile:/users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/mydata/ANGSD/2030_ALL.thetas.idx
+	-> Problems opening file: '/users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/mydata/ANGSD/2030_ALL.thetas.idx'
+cut: /users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/myresults/ANGSD/diversity/2030_ALL.thetasWindow.gz.pestPG: No such file or directory

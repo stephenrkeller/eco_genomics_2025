@@ -44,8 +44,24 @@ This will keep my notes on population genomics coding sessions
 
     -   The script we wrote for this job is `process_bam.sh` and is located in the `population_genomics/myscripts/` directory in my class repo.
 
--   Lastly, we wrote a script to summarize the ampping success and depth of coverage `bam_stats.sh` saved to `myscripts/`
+-   Lastly, we wrote a script to summarize the mapping success and depth of coverage `bam_stats.sh` saved to `myscripts/`
 
 -   Because the mapping step was taking awhile on the cluster, we wrote a simple wrapper script `process_stats_wrapper.sh` and included the SBATCH header to submit the processing and stats scripts as a batch.
 
     -   the outputs are saved in `population_genomics/myresults/`
+
+### 09/18/25: Review bamstats and set up nucleotide diversity estimation using ANGSD
+
+-   Wrote a short script called bamstats_review.r located in `msycripts` to evaluate the mapping success
+
+    -   saw roughly 66% of reads mapped in proper pairs
+
+    -   obtained depth of coverage between 2-3X –\> suggests we need to use a probabilistic framework for analyzing the genotype data.
+
+-   We wrote scripts to use ANGSD to call genotype likelihoods and calculate diversity stats
+
+    -   `myresults/ANGSD.sh` to estimate the GLs
+
+    -   `myresults/ANGSD_doTheta.sh` to estimate the nucleotide diversities
+
+-   We then wrote a wrapper script to submit to SLURM
