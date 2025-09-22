@@ -64,4 +64,18 @@ This will keep my notes on population genomics coding sessions
 
     -   `myresults/ANGSD_doTheta.sh` to estimate the nucleotide diversities
 
--   We then wrote a wrapper script to submit to SLURM
+-   We then wrote a wrapper script to submit to SLURM `diversity_wrapper.sh`
+
+### 09/19/25: Fix error in last line of `ANGSD_doTheta.sh`
+
+-   The following line had an error in the path naming derived from variables:
+
+    -   Original version:
+
+        -   `cut -f2-5,9,14 ${OUT}/${MYPOP}_${SUFFIX}.thetasWindow.gz.pestPG > ${OUT}/${MYPOP}_${SUFFIX}_win${WIN}_step${STEP}.thetas`
+
+    -   Should be:
+
+        `cut -f2-5,9,14 ${OUT}/${MYPOP}_${SUFFIX}_win${WIN}_step${STEP}.thetasWindow.gz.pestPG > ${OUT}/${MYPOP}_${SUFFIX}_win${WIN}_step${STEP}.thetas`
+
+-   Note: will require re-defining the following variables (assuming don't want to re-run ANGSD): `OUT, MYPOP, SUFFIX, WIN, STEP`
