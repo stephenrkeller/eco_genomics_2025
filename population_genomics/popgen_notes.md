@@ -79,3 +79,10 @@ This will keep my notes on population genomics coding sessions
         `cut -f2-5,9,14 ${OUT}/${MYPOP}_${SUFFIX}_win${WIN}_step${STEP}.thetasWindow.gz.pestPG > ${OUT}/${MYPOP}_${SUFFIX}_win${WIN}_step${STEP}.thetas`
 
 -   Note: will require re-defining the following variables (assuming don't want to re-run ANGSD): `OUT, MYPOP, SUFFIX, WIN, STEP`
+
+### 09/23/25: Visualize results nucleotide diversity in RMarkdown
+
+-   We created an RMarkdown doc to store our processed theta results from ANGSD
+-   plotted nSites, theta-W and pi, and Tajima's D
+-   Added class results to google doc
+    -   results suggest a latitudinal trend in diversity (higher in north) and inverse for TajD (more bottlenecked in south)

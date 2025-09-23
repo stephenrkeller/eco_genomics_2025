@@ -56,6 +56,6 @@ thetaStat do_stat ${INPUT}/${MYPOP}_${SUFFIX}.thetas.idx \
 
 ### Cut out the relevant columns for downstream input to R:
 
-cut -f2-5,9,14 ${OUT}/${MYPOP}_${SUFFIX}.thetasWindow.gz.pestPG > ${OUT}/${MYPOP}_${SUFFIX}_win${WIN}_step${STEP}.thetas
+cut -f2-5,9,14 ${OUT}/${MYPOP}_${SUFFIX}_win${WIN}_step${STEP}.thetasWindow.gz.pestPG > ${OUT}/${MYPOP}_${SUFFIX}_win${WIN}_step${STEP}.thetas
 
 

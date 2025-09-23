@@ -1,0 +1,104 @@
+---
+title: "Nucleotide Diversity"
+author: "Stephen Keller"
+date: "2025-09-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "~/projects/eco_genomics_2025/population_genomics/myresults/ANGSD/diversity/")
+```
+
+Import our libraries for plotting
+
+```{r}
+library(ggplot2)
+
+library(tidyverse)
+```
+
+Read in our theta outputs
+
+```{r}
+theta <- read.table("2030_ALL_win50000_step50000.thetas", sep="\t", header=T)
+
+head(theta)
+```
+First, we need to scal eour thetas by nSites:
+
+```{r}
+
+theta$tWsite = theta$tW/theta$nSites  # scaling Watterson's theta by nSites
+
+theta$tPsite = theta$tP/theta$nSites  # scaling Pi by nSites
+
+head(theta)
+```
+```{r}
+
+summary(theta)
+
+theta2 <- theta %>%
+  arrange(Chr, WinCenter) %>%
+  filter(nSites>100)
+
+summary(theta2)
+
+
+```
+Let's plot a histogram of how many sites are in each window that got sequenced
+
+```{r}
+ggplot(theta2, aes(nSites)) +
+  geom_histogram(bin=50, fill = "lightblue", color="black") +
+  geom_vline(xintercept = median(theta2$nSites), color="red", linetype="dashed") +
+  labs(title = "Distribution of windows with data", x="Number of sites in 50 kb windows", y="Frequency")
+```
+Let's plot nucleotide diversity as Pi
+```{r}
+ggplot(theta2, aes(x=Chr, y=tPsite, color=Chr)) +
+  geom_point(size=0.75, shape=1, show.legend=F) +
+  ylim(0,0.07) +
+  labs(title="Nucleotide diversity in 50 kb windows for population 2030", x="Scaffold", y="Theta-Pi")
+```
+```{r}
+# compare pi and theta-W together and look for deviation
+
+ggplot(theta2, aes(x=tWsite, y=tPsite, color=Chr)) +
+  geom_point(size=0.75, shape=1, show.legend=F) +
+  geom_abline(slope=1, intercept=0, linetype="dashed", color="black") +
+  labs(title="Pairwise differences vs. segregating sites for population 2030", x="Theta-W",y="Theta-Pi")
+
+```
+Which windows have evidence of negative D and low nucleotide diversity?
+
+```{r}
+
+theta2[which(theta2$Tajima < -1.5 & theta2$tPsite <0.001),]
+
+summary(theta2)
+
+sum(theta2$nSites)
+
+```
+
+Pull out extremes of Tajima's D
+
+```{r}
+maxD = max(theta2$Tajima)
+
+BigD = theta2[which(theta2$Tajima==maxD),]
+
+BigD
+
+minD = min(theta2$Tajima)
+
+SmallD = theta2[which(theta2$Tajima==minD),]
+
+SmallD
+
+```
+
+
+
