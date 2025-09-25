@@ -1,0 +1,91 @@
+---
+title: "PCA_Admix"
+author: "Stephen Keller"
+date: "2025-09-25"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir="~/projects/eco_genomics_2025/population_genomics/myresults/ANGSD/PCA_ADMIX/") 
+```
+Load libraries for plotting
+
+```{r}
+library(ggplot2)
+library(ggpubr)
+```
+
+First, let's estimate our PCA!
+
+```{r}
+COV <- as.matrix(read.table("RSBS_poly_K2.cov"))
+
+PCA <- eigen(COV)
+```
+
+How much variance does the first eigenvalue explain?
+
+```{r}
+var <- round(PCA$values/sum(PCA$values),3)
+
+var[1:3]
+```
+
+Screeplot of the variance explained
+
+```{r}
+barplot(var, 
+        xlab="Eigenvalues of the PCA", 
+        ylab="Proportion of variance explained")
+```
+Data wrangling that takes in the names of our samples and makes them into a tidy looking format that we can use for plotting
+
+```{r}
+names <- read.table("RSBS_bam.list")
+names <- unlist(strsplit(basename(as.character(names[,1])), split = ".sorted.rmdup.bam"))
+split = strsplit(names, "_")
+pops <- data.frame(names[1:113], do.call(rbind, split[1:113]))
+names(pops) = c("Ind", "Pop", "Row", "Col")
+
+data=as.data.frame(PCA$vectors)
+data=data[,c(1:3)]
+data= cbind(data, pops)
+```
+
+Let's plot the PCA! (drumroll...)
+
+```{r}
+ggscatter(data, x = "V1", y = "V2",
+          color = "Pop",
+          mean.point = TRUE,
+          star.plot = TRUE,
+          main="Red spruce-Black spruce genetic PCA") +
+  theme_bw(base_size = 13, base_family = "Times") +
+  labs(x = paste0("PC1: (",var[1]*100,"%)"), y = paste0("PC2: (",var[2]*100,"%)"))
+```
+What about the Admixture analysis?
+
+```{r}
+q <- read.table("RSBS_poly_K2.admix.2.Q", sep=" ", header=F)
+
+K=dim(q)[2] #Find the level of K modeled
+
+## rank order the samples according to population code
+ord<-order(pops[,2])
+```
+
+Plot the Admixture coefficients 
+
+```{r}
+barplot(t(q)[,ord],
+        #col=cols[1:K],
+        col=c("black","red"),
+        space=0,border=NA,
+        xlab="Populations",ylab="Admixture proportions",
+        main=paste0("Red Spruce-Black Spruce Admixture: K=",K))
+text(tapply(1:nrow(pops),pops[ord,2],mean),-0.05,unique(pops[ord,2]),xpd=T,cex=0.75,srt=45)
+abline(v=cumsum(sapply(unique(pops[ord,2]),function(x){sum(pops[ord,2]==x)})),col=1,lwd=1.2)
+
+```
+

@@ -1,0 +1,20 @@
+PCAngsd v1.36.1
+Time: 25/09/2025 16:48:26
+Directory: /gpfs1/home/s/r/srkeller/projects/eco_genomics_2025/population_genomics/myscripts
+Options:
+	--beagle /gpfs1/cl/ecogen/pbio6800/PopulationGenomics/ANGSD/RSBS_poly.beagle.gz
+	--eig 1
+	--threads 10
+	--out /users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/myresults/ANGSD/PCA_ADMIX/RSBS_poly_K2
+	--admix
+	--admix_K 2
+
+Loaded 971934 sites and 113 samples.
+Number of sites after MAF filtering (0.05): 697053
+
+PCAngsd converged in 76 iterations using 1 eigenvectors.
+Saved covariance matrix as /users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/myresults/ANGSD/PCA_ADMIX/RSBS_poly_K2.cov
+Saved admixture proportions as /users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/myresults/ANGSD/PCA_ADMIX/RSBS_poly_K2.admix.2.Q
+Saved ancestral allele frequencies proportions as /users/s/r/srkeller/projects/eco_genomics_2025/population_genomics/myresults/ANGSD/PCA_ADMIX/RSBS_poly_K2.admix.2.P
+
+Total elapsed time: 3m5s

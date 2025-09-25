@@ -1,0 +1,5 @@
+mkdir: cannot create directory ‘/users/s/r/srkeller/projects/population_genomics/myresults/ANGSD/Fst’: No such file or directory
+/var/spool/slurm/d/job1584983/slurm_script: line 61: /users/s/r/srkeller/projects/population_genomics/myresults/ANGSD/Fst/2030_WISC_2D.sfs: No such file or directory
+/var/spool/slurm/d/job1584983/slurm_script: line 66: realSFS: command not found
+/var/spool/slurm/d/job1584983/slurm_script: line 74: /users/s/r/srkeller/projects/population_genomics/myresults/ANGSD/Fst/2030_WISC_Fst.txt: No such file or directory
+/var/spool/slurm/d/job1584983/slurm_script: line 79: /users/s/r/srkeller/projects/population_genomics/myresults/ANGSD/Fst/2030_WISC_Fst_50kbWindows.txt: No such file or directory
